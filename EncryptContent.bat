@@ -1,1 +1,1 @@
-"C:\Program Files (x86)\Epic Games\UnrealEngine\Engine\Binaries\Win64\UnrealPak.exe" D:\workspace\UE4_project\PakTester\PersistentDownloadDir\EncryptedPak\targetPak.pak -create="D:\workspace\UE4_project\PakTester\Content" -encrypt -compress
+"C:\Program Files (x86)\Epic Games\UnrealEngine\Engine\Binaries\Win64\UnrealPak.exe" D:\workspace\UE4_project\PakTester\PersistentDownloadDir\targetPak.pak -create="D:\workspace\UE4_project\PakTester\Content" -encrypt -compress

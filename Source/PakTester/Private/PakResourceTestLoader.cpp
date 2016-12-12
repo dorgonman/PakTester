@@ -15,17 +15,23 @@ APakResourceTestLoader::APakResourceTestLoader()
 }
 
 void APakResourceTestLoader::Load(const FString & pakName) {
-	auto pakPath = FPaths::GameContentDir() + pakName + ".pak";
-	auto mountingPath = FPaths::EngineContentDir() + pakName + "/";
+	auto pakPath = FPaths::GamePersistentDownloadDir() / pakName + ".pak";
+	auto mountingPath = FPaths::GamePersistentDownloadDir() / pakName;
 	m_PakPlatformFile->Mount(*pakPath, 0, *mountingPath);
+
+
+	//auto readFilePath = FPaths::GamePersistentDownloadDir() / "NewBlueprint.uasset";
+	//auto readFileHandle = m_PakPlatformFile->OpenRead(*readFilePath, false);
+
+
 	TSet<FString> fileList;
 	IPlatformFile& InnerPlatform = FPlatformFileManager::Get().GetPlatformFile();
 	FPakFile PakFile(&InnerPlatform, *pakPath, false);
 	PakFile.FindFilesAtPath(fileList, *PakFile.GetMountPoint(), true, false, true);
 	for (auto & ele : fileList) {
 		FString assetShortName = FPackageName::GetShortName(ele);
-		assetShortName.RemoveFromEnd(FPackageName::GetAssetPackageExtension());
-		ele = "/Engine/" + pakName + "/" + assetShortName + TEXT(".") + assetShortName;
+		//assetShortName.RemoveFromEnd(FPackageName::GetAssetPackageExtension());
+		ele = FPaths::GamePersistentDownloadDir() / pakName / assetShortName;  // +TEXT(".") + assetShortName;
 	}
 	for (const auto & target : fileList) {
 		m_Stream->SynchronousLoad(target);
@@ -33,13 +39,23 @@ void APakResourceTestLoader::Load(const FString & pakName) {
 }
 
 void APakResourceTestLoader::Test() {
-	//Load("0a2e3bc4f1a811e5a15500163e0018da");
-	//Load("0aaa19c4a5ab11e3a0e100163e18af41");
+	//auto pakName = "targetPak";
+	//Load(pakName);
+
+	//auto readFilePath = FPaths::GamePersistentDownloadDir() / pakName / "TestActor.uasset";
+	//auto readFileHandle = m_PakPlatformFile->OpenRead(*readFilePath, false);
+
+	//int PacketSize = 1000;
+	//uint8* buffer = new uint8[PacketSize];
+	//bool result = readFileHandle->Read(buffer, PacketSize);
+	//UE_LOG(LogTemp, Log, TEXT("read result: %d"), result? 1:0);
+
 }
 
 void APakResourceTestLoader::BeginPlay()
 {
 	Super::BeginPlay();
+	UE_LOG(LogTemp, Log, TEXT("APakResourceTestLoader::BeginPlay() 1"))
 	Test();
 }
 

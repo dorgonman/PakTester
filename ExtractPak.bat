@@ -1,1 +1,1 @@
-"C:\Program Files (x86)\Epic Games\UnrealEngine\Engine\Binaries\Win64\UnrealPak.exe" D:\workspace\UE4_project\PakTester\PersistentDownloadDir\EncryptedPak\targetPak.pak -extract D:\workspace\UE4_project\PakTester\Intermediate\test
+"C:\Program Files (x86)\Epic Games\UnrealEngine\Engine\Binaries\Win64\UnrealPak.exe" D:\workspace\UE4_project\PakTester\PersistentDownloadDir\targetPak.pak -extract D:\workspace\UE4_project\PakTester\Intermediate\test
